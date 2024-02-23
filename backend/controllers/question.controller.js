@@ -15,8 +15,8 @@ const getAllQuestions = async (req, res) => {
 // Controller method to create a question
 const createQuestion = async (req, res) => {
     try {
-        const { title, type, options } = req.body;
-        const newQuestion = await Question.create({ title, type, options });
+        const { question, type, options, answer, formId } = req.body;
+        const newQuestion = await Question.create({ question, type, options, answer, formId });
         res.json({ success: true, question: newQuestion });
     } catch (error) {
         console.error('Error creating question:', error);
@@ -43,8 +43,8 @@ const getQuestionById = async (req, res) => {
 const updateQuestionById = async (req, res) => {
     try {
         const { id } = req.params;
-        const { title, type, options } = req.body;
-        const updatedQuestion = await Question.findByIdAndUpdate(id, { title, type, options }, { new: true });
+        const { question, type, options, answer, formId } = req.body;
+        const updatedQuestion = await Question.findByIdAndUpdate(id, { question, type, options, answer, formId }, { new: true });
         if (!updatedQuestion) {
             return res.status(404).json({ success: false, error: 'Question not found' });
         }

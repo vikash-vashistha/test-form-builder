@@ -5,11 +5,9 @@ const formSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description: String,
-    questions: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Question'
-    }]
+    description: {
+        type: String,
+    }
 });
 
 module.exports = mongoose.model("form", formSchema);

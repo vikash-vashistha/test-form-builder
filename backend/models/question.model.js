@@ -6,14 +6,18 @@ const questionSchema = new mongoose.Schema({
         enum: ['multipleChoice', 'checkbox', 'shortAnswer', 'dropdown'],
         required: true
     },
-    text: {
+    question: {
         type: String,
         required: true
     },
     options: [String], // For multipleChoice, checkbox, dropdown
-    isRequired: {
-        type: Boolean,
-        default: false
+    answer: {
+        type: String,
+        required: true
+    },
+    formId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Form'
     }
 });
 

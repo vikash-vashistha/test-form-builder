@@ -15,8 +15,8 @@ const getAllForms = async (req, res) => {
 // Controller method to create a form
 const createForm = async (req, res) => {
     try {
-        const { name, description } = req.body;
-        const newForm = await Form.create({ name, description });
+        const { title, description } = req.body;
+        const newForm = await Form.create({ title, description });
         res.json({ success: true, form: newForm });
     } catch (error) {
         console.error('Error creating form:', error);
@@ -43,8 +43,8 @@ const getFormById = async (req, res) => {
 const updateFormById = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name, description } = req.body;
-        const updatedForm = await Form.findByIdAndUpdate(id, { name, description }, { new: true });
+        const { title, description } = req.body;
+        const updatedForm = await Form.findByIdAndUpdate(id, { title, description }, { new: true });
         if (!updatedForm) {
             return res.status(404).json({ success: false, error: 'Form not found' });
         }
